@@ -10,7 +10,6 @@ const RecipeList = ({ type }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 9;
 
-  // Extract recipes array from fetched data (or empty array)
   const recipes = data && data.recipes ? data.recipes : [];
 
   const sortedRecipes = useMemo(
@@ -39,7 +38,7 @@ const RecipeList = ({ type }) => {
     return <p className="text-center text-red-500 p-4">Error: {error}</p>;
 
   return (
-    <div className="flex flex-col items-center py-6 px-4 sm:px-6 lg:px-50">
+    <div className="flex flex-col items-center py-6 px-4 sm:px-6 lg:px-8">
       {isLoading ? (
         <div className="gap-6 flex flex-wrap justify-center">
           {Array.from({ length: type === "home" ? 3 : 9 }).map((_, index) => (
