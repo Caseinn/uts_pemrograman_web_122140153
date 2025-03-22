@@ -1,50 +1,42 @@
+// src/components/Layout.js
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import {
+  navContainer,
+  navInner,
+  navLogoText,
+  navButton,
+  navLinkBase,
+  navLinkActive,
+  navLinkInactive
+} from "../styles/tailwindClasses";
 
 const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
-  };
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <nav className="py-6 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
-        <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-6">
-          {/* Logo */}
+    <div className="flex flex-col min-h-screen">
+      <nav className={navContainer}>
+        <div className={navInner}>
           <Link to="/" className="flex items-center space-x-3">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-10 w-auto"
               alt="Logo"
             />
-            <span className="text-3xl font-bold text-white">Nel's Kitchen</span>
+            <span className={navLogoText}>Nel's Kitchen</span>
           </Link>
-
-          {/* (Optional) Search Form */}
-          {/* <form onSubmit={handleSearchSubmit} className="hidden md:block">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder="Search..."
-              className="px-3 py-2 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
-            />
-          </form> */}
-
-          {/* Mobile Menu Toggle */}
+          <div className="hidden md:block flex-grow mx-4">
+            <SearchBar />
+          </div>
           <button
             type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg p-2 transition-all"
+            onClick={toggleMenu}
+            className={navButton}
+            aria-label="Toggle Menu"
           >
             {menuOpen ? (
               <svg
@@ -78,19 +70,13 @@ const Layout = ({ children }) => {
               </svg>
             )}
           </button>
-
-          {/* Navigation Menu */}
-          <div
-            className={`w-full md:flex md:items-center md:w-auto ${menuOpen ? "block" : "hidden"}`}
-          >
-            <ul className="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0">
+          <div className={`w-full md:flex md:w-auto ${menuOpen ? "block" : "hidden"}`}>
+            <ul className="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 p-4 md:p-0 font-medium dark:bg-gray-800 dark:border-gray-700">
               <li>
                 <Link
                   to="/"
-                  className={`block py-2 px-4 rounded transition-colors duration-200 ${
-                    location.pathname === "/"
-                      ? "bg-white text-blue-600 font-semibold"
-                      : "text-white hover:bg-white hover:text-blue-600"
+                  className={`${navLinkBase} ${
+                    location.pathname === "/" ? navLinkActive : navLinkInactive
                   }`}
                 >
                   Home
@@ -99,10 +85,10 @@ const Layout = ({ children }) => {
               <li>
                 <Link
                   to="/recipe"
-                  className={`block py-2 px-4 rounded transition-colors duration-200 ${
+                  className={`${navLinkBase} ${
                     location.pathname.startsWith("/recipe")
-                      ? "bg-white text-blue-600 font-semibold"
-                      : "text-white hover:bg-white hover:text-blue-600"
+                      ? "text-blue-700 bg-blue-100 md:bg-transparent md:dark:text-blue-500"
+                      : navLinkInactive
                   }`}
                 >
                   Recipe
@@ -111,15 +97,12 @@ const Layout = ({ children }) => {
             </ul>
           </div>
         </div>
+        <div className={`md:hidden px-6 mt-4 ${menuOpen ? "block" : "hidden"}`}>
+          <SearchBar />
+        </div>
       </nav>
-
-      {/* Main Content */}
-      <main className="flex-grow container mx-auto p-8">
-        {children}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-inner py-4">
+      <main className="flex-grow dark:bg-gray-700">{children}</main>
+      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 shadow-inner dark:border-gray-700 py-4">
         <div className="container mx-auto text-center">
           <span className="text-sm text-gray-600 dark:text-gray-400">
             © {new Date().getFullYear()}{" "}

@@ -1,49 +1,31 @@
-import React, { useState, useEffect, useMemo } from "react";
+// src/pages/RecipeList.js
+import React, { useState, useMemo, useEffect } from "react";
 import Card from "../components/Card";
-import SkeletonCard from "../components/Skeleton";
+import SkeletonCard from "../components/SkeletonCard";
 import Pagination from "../components/Pagination";
+import useFetchRecipes from "../hooks/useFetchRecipes";
 
 const RecipeList = ({ type }) => {
-  const [recipes, setRecipes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, isLoading, error } = useFetchRecipes("https://dummyjson.com/recipes?limit=50");
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 9;
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch("https://dummyjson.com/recipes?limit=50");
-        if (!response.ok) throw new Error("Failed to fetch recipes");
-        const data = await response.json();
+  // Extract recipes array from fetched data (or empty array)
+  const recipes = data && data.recipes ? data.recipes : [];
 
-        if (!data.recipes) throw new Error("No recipes found");
-        setRecipes(data.recipes);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const sortedRecipes = useMemo(
+    () => (recipes ? [...recipes].sort((a, b) => a.name.localeCompare(b.name)) : []),
+    [recipes]
+  );
 
-    fetchRecipes();
-  }, []);
-
-  // Sort recipes alphabetically
-  const sortedRecipes = useMemo(() => {
-    return recipes ? [...recipes].sort((a, b) => a.name.localeCompare(b.name)) : [];
-  }, [recipes]);
-
-  // Randomize home recipes
   const getRandomRecipes = (recipes, count) => {
     const shuffled = [...recipes].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, count);
   };
 
   const homeRecipes = useMemo(() => getRandomRecipes(sortedRecipes, 3), [sortedRecipes]);
-
-  // Pagination logic
   const totalPages = Math.ceil(sortedRecipes.length / recipesPerPage);
+
   const paginatedRecipes = useMemo(() => {
     const start = (currentPage - 1) * recipesPerPage;
     return sortedRecipes.slice(start, start + recipesPerPage);
@@ -53,12 +35,11 @@ const RecipeList = ({ type }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  if (error) {
+  if (error)
     return <p className="text-center text-red-500 p-4">Error: {error}</p>;
-  }
 
   return (
-    <div className="flex flex-col items-center py-2">
+    <div className="flex flex-col items-center py-6 px-4 sm:px-6 lg:px-50">
       {isLoading ? (
         <div className="gap-6 flex flex-wrap justify-center">
           {Array.from({ length: type === "home" ? 3 : 9 }).map((_, index) => (
@@ -79,7 +60,6 @@ const RecipeList = ({ type }) => {
           ))}
         </div>
       )}
-
       {type === "recipes" && (
         <Pagination
           currentPage={currentPage}
