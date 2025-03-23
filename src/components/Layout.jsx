@@ -87,8 +87,7 @@ const Layout = ({ children }) => {
                   to="/recipe"
                   className={`${navLinkBase} ${
                     location.pathname.startsWith("/recipe")
-                      ? "text-blue-700 bg-blue-100 md:bg-transparent md:dark:text-blue-500"
-                      : navLinkInactive
+                      ? navLinkActive : navLinkInactive
                   }`}
                 >
                   Recipe
