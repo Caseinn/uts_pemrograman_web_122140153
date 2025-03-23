@@ -10,7 +10,6 @@ const RecipeDetail = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Reset loading state on id change
     setIsLoading(true);
     const fetchRecipeDetail = async () => {
       try {
@@ -38,7 +37,7 @@ const RecipeDetail = () => {
     return <p className="text-center text-red-500 p-4">Error: {error}</p>;
 
   return (
-    <div className="max-w-2xl mx-auto my-6 p-4 bg-white shadow-md rounded-lg dark:bg-gray-800">
+    <div className="max-w-2xl mx-5 md:mx-auto my-6 p-4 bg-white shadow-md rounded-lg dark:bg-gray-800">
       <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
         {recipe.name}
       </h2>
