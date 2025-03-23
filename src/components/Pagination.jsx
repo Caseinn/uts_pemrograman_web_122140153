@@ -1,13 +1,13 @@
-// src/components/Pagination.js
 import React from "react";
 import {
   paginationButton,
   paginationButtonActive,
-  paginationButtonInactive
+  paginationButtonInactive,
 } from "../styles/tailwindClasses";
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
   if (totalPages <= 1) return null;
+
   const maxVisibleButtons = 5;
   let startPage = Math.max(1, currentPage - 2);
   let endPage = startPage + maxVisibleButtons - 1;
@@ -30,6 +30,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
             }`}
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
+            aria-label="Previous Page"
           >
             <span className="sr-only">Previous</span>
             <svg
@@ -49,6 +50,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
                 currentPage === page ? paginationButtonActive : paginationButtonInactive
               }`}
               onClick={() => setCurrentPage(page)}
+              aria-label={`Page ${page}`}
             >
               {page}
             </button>
@@ -63,6 +65,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
             }`}
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
+            aria-label="Next Page"
           >
             <span className="sr-only">Next</span>
             <svg

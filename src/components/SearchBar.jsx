@@ -1,6 +1,7 @@
-// src/components/SearchBar.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+// Optionally import debounce from lodash.debounce if you wish to use it
+// import debounce from "lodash.debounce";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -8,17 +9,26 @@ const SearchBar = () => {
   const [showNoResults, setShowNoResults] = useState(false);
   const navigate = useNavigate();
 
+  // Using useCallback with a debounced function is an option here.
+  // For simplicity, we use a simple setTimeout.
   useEffect(() => {
     const timer = setTimeout(() => {
       if (query.trim() !== "") {
-        fetch(`https://dummyjson.com/recipes/search?q=${encodeURIComponent(query)}`)
-          .then((response) => {
+        (async () => {
+          try {
+            const response = await fetch(
+              `https://dummyjson.com/recipes/search?q=${encodeURIComponent(query)}`
+            );
             if (!response.ok) throw new Error("Error fetching search results");
-            return response.json();
-          })
-          .then((data) => setResults(data.recipes || []))
-          .catch(() => setResults([]));
-      } else setResults([]);
+            const data = await response.json();
+            setResults(data.recipes || []);
+          } catch (err) {
+            setResults([]);
+          }
+        })();
+      } else {
+        setResults([]);
+      }
     }, 300);
     return () => clearTimeout(timer);
   }, [query]);
@@ -27,7 +37,9 @@ const SearchBar = () => {
     if (query.trim() !== "" && results.length === 0) {
       const timer = setTimeout(() => setShowNoResults(true), 650);
       return () => clearTimeout(timer);
-    } else setShowNoResults(false);
+    } else {
+      setShowNoResults(false);
+    }
   }, [query, results]);
 
   const handleChange = (e) => setQuery(e.target.value);
@@ -39,21 +51,12 @@ const SearchBar = () => {
 
   return (
     <form className="max-w-md mx-auto relative" onSubmit={(e) => e.preventDefault()}>
-      <label
-        htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-      >
+      <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg
-            className="w-4 h-4 text-gray-500 dark:text-gray-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
+          <svg className="w-4 h-4 text-gray-500 dark:text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path
               stroke="currentColor"
               strokeLinecap="round"
@@ -73,8 +76,7 @@ const SearchBar = () => {
           required
         />
       </div>
-      {(results.length > 0 ||
-        (query.trim() !== "" && results.length === 0 && showNoResults)) && (
+      {(results.length > 0 || (query.trim() !== "" && results.length === 0 && showNoResults)) && (
         <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-900 dark:border-gray-600 dark:text-white">
           {results.length > 0 ? (
             results.map((recipe) => (

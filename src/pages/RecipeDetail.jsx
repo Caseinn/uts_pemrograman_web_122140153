@@ -1,4 +1,3 @@
-// src/pages/RecipeDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SkeletonRecipeDetail from "../components/SkeletonDetail";
@@ -38,13 +37,12 @@ const RecipeDetail = () => {
 
   return (
     <div className="max-w-2xl mx-5 md:mx-auto my-6 p-4 bg-white shadow-md rounded-lg dark:bg-gray-800">
-      <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-        {recipe.name}
-      </h2>
+      <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{recipe.name}</h2>
       <img
         src={recipe.image}
         alt={recipe.name}
         className="w-full h-72 object-cover rounded-lg mb-4"
+        loading="lazy"
       />
       <p className="text-gray-700 dark:text-gray-300">
         <strong>Cuisine:</strong> {recipe.cuisine}
@@ -53,9 +51,7 @@ const RecipeDetail = () => {
         <strong>Difficulty:</strong> {recipe.difficulty}
       </p>
       <div className="mt-4">
-        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-          Preparation &amp; Cooking
-        </h3>
+        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Preparation &amp; Cooking</h3>
         <p className="text-gray-700 dark:text-gray-300">
           <strong>Prep Time:</strong> {recipe.prepTimeMinutes} minutes
         </p>
@@ -71,9 +67,7 @@ const RecipeDetail = () => {
       </div>
       {recipe.ingredients && (
         <div className="mt-4">
-          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-            Ingredients
-          </h3>
+          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Ingredients</h3>
           <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
             {recipe.ingredients.map((item, index) => (
               <li key={index}>{item}</li>
@@ -83,9 +77,7 @@ const RecipeDetail = () => {
       )}
       {recipe.instructions && (
         <div className="mt-4">
-          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-            Instructions
-          </h3>
+          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Instructions</h3>
           <p className="text-gray-700 dark:text-gray-300">{recipe.instructions}</p>
         </div>
       )}

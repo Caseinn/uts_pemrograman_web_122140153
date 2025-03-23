@@ -1,4 +1,3 @@
-// src/pages/RecipeList.js
 import React, { useState, useMemo, useEffect } from "react";
 import Card from "../components/Card";
 import SkeletonCard from "../components/SkeletonCard";
@@ -9,7 +8,6 @@ const RecipeList = ({ type }) => {
   const { data, isLoading, error } = useFetchRecipes("https://dummyjson.com/recipes?limit=50");
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 9;
-
   const recipes = data && data.recipes ? data.recipes : [];
 
   const sortedRecipes = useMemo(
@@ -34,8 +32,7 @@ const RecipeList = ({ type }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  if (error)
-    return <p className="text-center text-red-500 p-4">Error: {error}</p>;
+  if (error) return <p className="text-center text-red-500 p-4">Error: {error}</p>;
 
   return (
     <div className="flex flex-col items-center py-6 px-4 sm:px-6 lg:px-8">
@@ -60,11 +57,7 @@ const RecipeList = ({ type }) => {
         </div>
       )}
       {type === "recipes" && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
-        />
+        <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
       )}
     </div>
   );

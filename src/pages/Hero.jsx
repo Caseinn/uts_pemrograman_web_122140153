@@ -1,4 +1,3 @@
-// src/components/Hero.js
 import React from "react";
 import RecipeList from "../pages/RecipeList";
 import {
@@ -7,7 +6,7 @@ import {
   heroTitle,
   heroSubtitle,
   featuredSection,
-  featuredTitle
+  featuredTitle,
 } from "../styles/tailwindClasses";
 
 const Hero = () => {
@@ -18,12 +17,8 @@ const Hero = () => {
         style={{ backgroundImage: "url('https://source.unsplash.com/random/1600x900?cooking')" }}
       >
         <div className={heroOverlay}>
-          <h1 className={heroTitle}>
-            Welcome to Nel's Kitchen
-          </h1>
-          <p className={heroSubtitle}>
-            Discover, cook, and enjoy our delicious recipes
-          </p>
+          <h1 className={heroTitle}>Welcome to Nel’s Kitchen</h1>
+          <p className={heroSubtitle}>Discover, cook, and enjoy our delicious recipes</p>
         </div>
       </section>
       <section className={featuredSection}>

@@ -1,45 +1,44 @@
-// src/components/SkeletonRecipeDetail.js
 import React from "react";
 import {
   skeletonRecipeContainer,
   skeletonTitle,
-  skeletonImageDetail, 
+  skeletonImageDetail,
   skeletonInfoContainer,
   skeletonLineHalf,
   skeletonLineThird,
   skeletonSectionHeader,
   skeletonFullLine,
-  skeletonListSpacing
+  skeletonListSpacing,
 } from "../styles/tailwindClasses";
 
 const SkeletonRecipeDetail = () => (
   <div className={skeletonRecipeContainer}>
-    <div className={skeletonTitle}></div>
-    <div className={skeletonImageDetail}></div>
+    <div className={skeletonTitle} />
+    <div className={skeletonImageDetail} />
     <div className={`${skeletonInfoContainer} mb-4`}>
-      <div className={skeletonLineHalf}></div>
-      <div className={skeletonLineThird}></div>
+      <div className={skeletonLineHalf} />
+      <div className={skeletonLineThird} />
     </div>
-    <div className={skeletonSectionHeader}></div>
+    <div className={skeletonSectionHeader} />
     <div className={`${skeletonInfoContainer} mb-4`}>
-      <div className={skeletonLineHalf}></div>
-      <div className={skeletonLineHalf}></div>
-      <div className={skeletonLineHalf}></div>
-      <div className={skeletonLineHalf}></div>
+      <div className={skeletonLineHalf} />
+      <div className={skeletonLineHalf} />
+      <div className={skeletonLineHalf} />
+      <div className={skeletonLineHalf} />
     </div>
-    <div className={skeletonSectionHeader}></div>
+    <div className={skeletonSectionHeader} />
     <ul className={skeletonListSpacing}>
-      <li className={skeletonFullLine}></li>
-      <li className={skeletonFullLine}></li>
-      <li className={skeletonFullLine}></li>
+      <li className={skeletonFullLine} />
+      <li className={skeletonFullLine} />
+      <li className={skeletonFullLine} />
     </ul>
-    <div className={skeletonSectionHeader}></div>
+    <div className={skeletonSectionHeader} />
     <div className={`${skeletonInfoContainer} mb-4`}>
-      <div className={skeletonFullLine}></div>
-      <div className={skeletonFullLine}></div>
-      <div className={skeletonFullLine}></div>
+      <div className={skeletonFullLine} />
+      <div className={skeletonFullLine} />
+      <div className={skeletonFullLine} />
     </div>
-    <div className={skeletonLineThird}></div>
+    <div className={skeletonLineThird} />
   </div>
 );
 

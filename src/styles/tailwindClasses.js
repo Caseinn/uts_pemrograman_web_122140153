@@ -5,6 +5,7 @@ export const cardContent = "p-5 flex flex-col flex-grow";
 export const cardTitle = "text-xl font-bold text-gray-900 dark:text-white mb-2";
 export const cardInfo =
   "flex justify-between text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-md mb-3";
+
 export const navContainer =
   "py-6 bg-white border-b border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-600";
 export const navInner =
@@ -35,22 +36,18 @@ export const notFoundTitle = "text-6xl font-bold text-gray-800 dark:text-white m
 export const notFoundText = "text-xl text-gray-600 dark:text-gray-300 mb-6";
 export const notFoundButton =
   "px-5 py-3 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
+
 export const skeletonRecipeContainer =
   "max-w-2xl mx-auto my-6 p-4 bg-white shadow-md rounded-lg dark:bg-gray-800 animate-pulse";
-export const skeletonTitle =
-  "h-10 w-3/4 bg-gray-300 dark:bg-gray-700 mb-4";
-export const skeletonImageDetail =
-  "w-full h-72 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4";
+export const skeletonTitle = "h-10 w-3/4 bg-gray-300 dark:bg-gray-700 mb-4";
+export const skeletonImageDetail = "w-full h-72 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4";
 export const skeletonInfoContainer = "space-y-2";
-export const skeletonLineHalf =
-  "h-4 w-1/2 bg-gray-300 dark:bg-gray-700";
-export const skeletonLineThird =
-  "h-4 w-1/3 bg-gray-300 dark:bg-gray-700";
-export const skeletonSectionHeader =
-  "h-6 w-1/3 bg-gray-300 dark:bg-gray-700 mb-2";
-export const skeletonFullLine =
-  "h-4 w-full bg-gray-300 dark:bg-gray-700";
+export const skeletonLineHalf = "h-4 w-1/2 bg-gray-300 dark:bg-gray-700";
+export const skeletonLineThird = "h-4 w-1/3 bg-gray-300 dark:bg-gray-700";
+export const skeletonSectionHeader = "h-6 w-1/3 bg-gray-300 dark:bg-gray-700 mb-2";
+export const skeletonFullLine = "h-4 w-full bg-gray-300 dark:bg-gray-700";
 export const skeletonListSpacing = "space-y-2 mb-4";
+
 export const heroSection = "bg-cover bg-center h-96 relative";
 export const heroOverlay = "absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center";
 export const heroTitle = "text-4xl md:text-6xl font-bold text-white mb-4 text-center px-4";
@@ -58,4 +55,3 @@ export const heroSubtitle = "text-lg md:text-2xl text-gray-200 text-center px-4"
 
 export const featuredSection = "py-12 bg-gray-50 dark:bg-gray-700";
 export const featuredTitle = "text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center";
-
