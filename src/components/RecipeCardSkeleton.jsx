@@ -3,7 +3,6 @@ import React from 'react';
 const RecipeCardSkeleton = () => {
   return (
     <div className="w-full sm:w-[19.5rem] m-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 cursor-pointer transform transition-all duration-200 hover:shadow-lg hover:scale-105">
-      {/* Image Skeleton with SVG placeholder */}
       <div className="w-full h-80 flex items-center justify-center bg-gray-200 dark:bg-gray-700 animate-pulse rounded-t-lg">
         <svg
           className="w-10 h-10 text-gray-300 dark:text-gray-600"
@@ -16,9 +15,7 @@ const RecipeCardSkeleton = () => {
         </svg>
       </div>
       <div className="p-5 space-y-3">
-        {/* Title Skeleton */}
         <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4"></div>
-        {/* Info Row Skeleton */}
         <div className="flex justify-between text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-md">
           <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded animate-pulse w-1/2"></div>
           <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded animate-pulse w-1/4"></div>

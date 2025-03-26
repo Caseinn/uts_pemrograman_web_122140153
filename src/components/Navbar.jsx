@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import SearchBar from './SearchBar'; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,37 +26,10 @@ const Navbar = () => {
           </span>
         </NavLink>
         <div className="flex md:order-2 items-center space-x-3">
-          {/* Desktop search input */}
-          <div className="relative hidden md:block">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-              <span className="sr-only">Search icon</span>
-            </div>
-            <input
-              type="text"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg 
-                         bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                         focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Search..."
-            />
+          <div className="hidden md:block">
+            <SearchBar />
           </div>
-          {/* ThemeToggle component */}
           <ThemeToggle />
-          {/* Hamburger menu toggle for mobile/tablet */}
           <button
             type="button"
             onClick={toggleMenu}
@@ -83,38 +57,12 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        {/* Collapsible menu */}
+
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
-            menuOpen ? 'block' : 'hidden'
-          }`}
+          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${menuOpen ? 'block' : 'hidden'}`}
         >
-          {/* Mobile search input */}
           <div className="relative mt-3 md:hidden">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg 
-                         bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                         focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Search..."
-            />
+            <SearchBar /> 
           </div>
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 
                          md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white 
@@ -123,9 +71,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 end
-                className={({ isActive }) =>
-                  isActive ? activeClasses : inactiveClasses
-                }
+                className={({ isActive }) => (isActive ? activeClasses : inactiveClasses)}
               >
                 Home
               </NavLink>
@@ -133,9 +79,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/recipes"
-                className={({ isActive }) =>
-                  isActive ? activeClasses : inactiveClasses
-                }
+                className={({ isActive }) => (isActive ? activeClasses : inactiveClasses)}
               >
                 Recipe
               </NavLink>
