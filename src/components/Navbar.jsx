@@ -10,7 +10,7 @@ const Navbar = () => {
   const activeClasses =
     "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-transparent dark:text-blue-600";
   const inactiveClasses =
-    "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white dark:hover:bg-gray-700";
+    "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:bg-transparent dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent";
 
   return (
     <nav className="bg-white shadow-md dark:bg-gray-900 border-b border-gray-200 dark:border-gray-600">
